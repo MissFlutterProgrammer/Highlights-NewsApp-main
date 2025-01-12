@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, deprecated_member_use, avoid_print
+
 import 'package:flutter/cupertino.dart';
 import 'package:highlights/screens/viewmorescreen.dart';
 import 'package:highlights/widgets/news_widget.dart';
@@ -5,7 +7,6 @@ import 'package:http/http.dart' as http;
 import 'package:webfeed_plus/webfeed_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:webfeed_plus/domain/rss_feed.dart';
-
 import '../../utils/appcolors.dart';
 import '../../utils/helper/topic_functions.dart';
 import '../apptext.dart';
@@ -23,7 +24,11 @@ class _HomeSectionTabState extends State<HomeSectionTab> {
 
   Future<void> loadFeed() async {
     try {
-      var response = await http.get(Uri.parse("https://news.google.com/rss/headlines/section/topic/${widget.topic.toUpperCase()}?ceid=US:EN&hl=en&gl=US"));
+      var response = await http.get(
+        Uri.parse(
+          "https://news.google.com/rss/headlines/section/topic/${widget.topic.toUpperCase()}?ceid=US:EN&hl=en&gl=US",
+        ),
+      );
       if (response.statusCode == 200) {
         setState(() {
           feed = RssFeed.parse(response.body);
@@ -31,21 +36,22 @@ class _HomeSectionTabState extends State<HomeSectionTab> {
       } else {
         throw Exception('Failed to load RSS feed');
       }
-    } catch (e,s) {
+    } catch (e, s) {
       print('Error loading RSS feed: $e');
       print('Stack loading RSS feed: $s');
-
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    loadFeed(); ///Not Safe For Use
-    return  Column(
+    loadFeed();
+
+    ///Not Safe For Use
+    return Column(
       children: [
-         Row(
+        Row(
           children: [
-             Padding(
+            Padding(
               padding: const EdgeInsets.all(15.0),
               child: AppText(
                 text: convertToSpaces(widget.topic),
@@ -54,48 +60,54 @@ class _HomeSectionTabState extends State<HomeSectionTab> {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-
             const Spacer(),
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Icon(Icons.list,color: AppColors.blackColor.withOpacity(0.2),),
+              child: Icon(
+                Icons.list,
+                color: AppColors.blackColor.withOpacity(0.2),
+              ),
             )
           ],
         ),
         SizedBox(
           child: feed == null
               ? const Center(
-            child: CupertinoActivityIndicator(),
-          )
+                  child: CupertinoActivityIndicator(),
+                )
               : ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                //  itemCount: feed!.items?.length,
-                itemCount: 2,
-                itemBuilder: (context, index) {
-                  var item = feed!.items?[index];
-                  return NewsWidget(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  //  itemCount: feed!.items?.length,
+                  itemCount: 2,
+                  itemBuilder: (context, index) {
+                    var item = feed!.items?[index];
+                    return NewsWidget(
                       title: item?.title ?? '',
                       subtitle: "",
                       publishDate: item?.pubDate?.toString() ?? "",
                       author: item?.source?.url.toString() ?? "",
-                      link: item?.link?.toString() ?? "");
-                },
-              ),
+                      link: item?.link?.toString() ?? "",
+                    );
+                  },
+                ),
         ),
-
         Row(
           children: [
             const Spacer(),
-
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: InkWell(
-                onTap: (){
+                onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>  ViewMore(getURL: "https://news.google.com/rss/headlines/section/topic/${widget.topic.toUpperCase()}?ceid=US:EN&hl=en&gl=US",name: convertToSpaces(widget.topic),)),
+                      builder: (context) => ViewMore(
+                        getURL:
+                            "https://news.google.com/rss/headlines/section/topic/${widget.topic.toUpperCase()}?ceid=US:EN&hl=en&gl=US",
+                        name: convertToSpaces(widget.topic),
+                      ),
+                    ),
                   );
                 },
                 child: const AppText(
@@ -106,7 +118,6 @@ class _HomeSectionTabState extends State<HomeSectionTab> {
                 ),
               ),
             )
-
           ],
         )
       ],

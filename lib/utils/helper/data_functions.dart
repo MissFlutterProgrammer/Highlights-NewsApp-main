@@ -31,13 +31,11 @@ class DataHandler {
     return prefs.getBool(key) ?? false;
   }
 
-
   Future<void> clearAllPreferences() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();
   }
 }
-
 
 // Example usage
 // DataHandler.setDoubleValue("doubleValue", 3.14);

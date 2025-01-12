@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
 import '../utils/appcolors.dart';
 import 'apptext.dart';
 
@@ -21,8 +20,8 @@ class _NewsWebviewAppState extends State<NewsWebviewApp> {
     controller = WebViewController()
       ..loadRequest(
         Uri.parse(widget.newsURL),
-
-      )..setJavaScriptMode(JavaScriptMode.unrestricted);
+      )
+      ..setJavaScriptMode(JavaScriptMode.unrestricted);
   }
 
   @override
@@ -31,9 +30,10 @@ class _NewsWebviewAppState extends State<NewsWebviewApp> {
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         leading: IconButton(
-          icon: const Icon(Icons.chevron_left), onPressed: () {
+          icon: const Icon(Icons.chevron_left),
+          onPressed: () {
             Navigator.pop(context);
-        },
+          },
         ),
         title: const AppText(
           text: "H I G H L I G H T S",

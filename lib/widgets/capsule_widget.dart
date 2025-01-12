@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:highlights/utils/appcolors.dart';
-
 import 'apptext.dart';
 
 class CapsuleWidget extends StatefulWidget {
@@ -11,14 +10,14 @@ class CapsuleWidget extends StatefulWidget {
   final int currentIndex;
   final ValueChanged<int>? onTapIndex;
   const CapsuleWidget({
-    Key? key,
+    super.key,
     required this.name,
     required this.border,
     required this.background,
     required this.currentIndex,
     this.onTapCallback,
     this.onTapIndex,
-  }) : super(key: key);
+  });
 
   @override
   State<CapsuleWidget> createState() => _CapsuleWidgetState();
@@ -31,7 +30,7 @@ class _CapsuleWidgetState extends State<CapsuleWidget> {
       padding: const EdgeInsets.only(top: 20, left: 10),
       child: GestureDetector(
         onTap: () {
-          if (widget.currentIndex != null && widget.onTapIndex != null) {
+          if (widget.onTapIndex != null) {
             widget.onTapIndex!(widget.currentIndex);
           }
           widget.onTapCallback!(widget.name);

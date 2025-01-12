@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, constant_identifier_names
+
 class HttpStatusCodes {
   // Error Codes
   static const int INVALID_INPUT_ERROR = 400;

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:highlights/screens/splashscreen.dart';
 
-
 ///  Created by Shreyas Vilaschandra Bhike on 24/03/24.
 
 /// Instagram
@@ -24,12 +23,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-
-

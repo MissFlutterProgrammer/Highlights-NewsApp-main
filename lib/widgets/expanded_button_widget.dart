@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:highlights/utils/appcolors.dart';
 
 class ExpandedButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Widget child;
   final Color buttonColor;
 
-
-  const ExpandedButton({Key? key, required this.onPressed, required this.child, required this.buttonColor})
-      : super(key: key);
+  const ExpandedButton({
+    super.key,
+    required this.onPressed,
+    required this.child,
+    required this.buttonColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,8 @@ class ExpandedButton extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: buttonColor,
-              borderRadius: BorderRadius.circular(8), // Adjust the radius as needed
+              borderRadius:
+                  BorderRadius.circular(8), // Adjust the radius as needed
             ),
             child: Center(
               child: child,

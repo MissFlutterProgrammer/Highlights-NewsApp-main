@@ -1,15 +1,15 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/cupertino.dart';
 import 'package:highlights/widgets/news_widget.dart';
 import 'package:http/http.dart' as http;
 import 'package:webfeed_plus/webfeed_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:webfeed_plus/domain/rss_feed.dart';
-
 import '../../utils/appcolors.dart';
 import '../widgets/apptext.dart';
 
 class ViewMore extends StatefulWidget {
-
   final String name;
   final String getURL;
   const ViewMore({super.key, required this.getURL, required this.name});
@@ -40,15 +40,16 @@ class _ViewMoreState extends State<ViewMore> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         leading: IconButton(
-          icon: const Icon(Icons.chevron_left), onPressed: () {
-          Navigator.pop(context);
-        },
+          icon: const Icon(Icons.chevron_left),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
-        title:  AppText(
+        title: AppText(
           text: widget.name,
           fontSize: 18.0,
           color: AppColors.blackColor,
@@ -58,22 +59,23 @@ class _ViewMoreState extends State<ViewMore> {
       body: SizedBox(
         child: feed == null
             ? const Center(
-          child: CupertinoActivityIndicator(),
-        )
+                child: CupertinoActivityIndicator(),
+              )
             : ListView.builder(
-          shrinkWrap: true,
-          itemCount: feed!.items?.length,
-          // itemCount: 2,
-          itemBuilder: (context, index) {
-            var item = feed!.items?[index];
-            return NewsWidget(
-                title: item?.title ?? '',
-                subtitle: "",
-                publishDate: item?.pubDate?.toString() ?? "",
-                author: item?.source?.url.toString() ?? "",
-                link: item?.link?.toString() ?? "");
-          },
-        ),
+                shrinkWrap: true,
+                itemCount: feed!.items?.length,
+                // itemCount: 2,
+                itemBuilder: (context, index) {
+                  var item = feed!.items?[index];
+                  return NewsWidget(
+                    title: item?.title ?? '',
+                    subtitle: "",
+                    publishDate: item?.pubDate?.toString() ?? "",
+                    author: item?.source?.url.toString() ?? "",
+                    link: item?.link?.toString() ?? "",
+                  );
+                },
+              ),
       ),
     );
   }

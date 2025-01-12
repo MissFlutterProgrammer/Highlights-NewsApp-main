@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, avoid_print, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:highlights/screens/homescreen.dart';
 import '../utils/appcolors.dart';
@@ -21,8 +23,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   String name = '';
   CountryCodes? selectedCountry;
   Language? selectedLanguage;
-
-
 
   String? gender;
   final List<String> genders = ['Male', 'Female', 'Other'];
@@ -52,16 +52,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             children: [
               TextField(
                 decoration: const InputDecoration(
-                    labelText: 'Name',
-                    labelStyle: TextStyle(color: AppColors.blackColor),
+                  labelText: 'Name',
+                  labelStyle: TextStyle(
+                    color: AppColors.blackColor,
+                  ),
                   enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.blackColor),
+                    borderSide: BorderSide(
+                      color: AppColors.blackColor,
+                    ),
                   ),
                   focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.primaryColor),
+                    borderSide: BorderSide(
+                      color: AppColors.primaryColor,
+                    ),
                   ),
-
-
                 ),
                 onChanged: (value) {
                   setState(() {
@@ -70,7 +74,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 },
               ),
               const SizedBox(height: 20),
-
               const Row(
                 children: [
                   AppText(
@@ -83,12 +86,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   Spacer()
                 ],
               ),
-              const SizedBox(height: 5,),
+              const SizedBox(height: 5),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-                  border: Border.all(color: AppColors.blackColor.withOpacity(0.7)),
+                  border: Border.all(
+                    color: AppColors.blackColor.withOpacity(0.7),
+                  ),
                   color: Colors.white,
                 ),
                 child: DropdownButton<String>(
@@ -110,14 +116,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     });
                   },
                   underline: Container(),
-                  icon: const Icon(Icons.arrow_drop_down, color: AppColors.blackColor),
+                  icon: const Icon(
+                    Icons.arrow_drop_down,
+                    color: AppColors.blackColor,
+                  ),
                   elevation: 8,
                   isExpanded: true,
                   dropdownColor: Colors.white,
                 ),
               ),
-
-
               const SizedBox(height: 20),
               const Row(
                 children: [
@@ -131,12 +138,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   Spacer()
                 ],
               ),
-              const SizedBox(height: 5,),
+              const SizedBox(height: 5),
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-                  border: Border.all(color: AppColors.blackColor.withOpacity(0.7)),
+                  border: Border.all(
+                    color: AppColors.blackColor.withOpacity(0.7),
+                  ),
                   color: Colors.white, // Background color
                 ),
                 child: DropdownButton<CountryCodes>(
@@ -158,13 +167,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     });
                   },
                   underline: Container(),
-                  icon: const Icon(Icons.arrow_drop_down, color: AppColors.blackColor),
+                  icon: const Icon(
+                    Icons.arrow_drop_down,
+                    color: AppColors.blackColor,
+                  ),
                   elevation: 8,
                   isExpanded: true,
                   dropdownColor: Colors.white,
                 ),
               ),
-
               const SizedBox(height: 20),
               const Row(
                 children: [
@@ -178,12 +189,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   Spacer()
                 ],
               ),
-              const SizedBox(height: 5,),
+              const SizedBox(height: 5),
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-                  border: Border.all(color: AppColors.blackColor.withOpacity(0.7)),
+                  border: Border.all(
+                    color: AppColors.blackColor.withOpacity(0.7),
+                  ),
                   color: Colors.white, // Background color
                 ),
                 child: DropdownButton<Language>(
@@ -205,16 +218,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     });
                   },
                   underline: Container(), // Hides the underline
-                  icon: const Icon(Icons.arrow_drop_down, color: AppColors.blackColor), // Custom dropdown icon
+                  icon: const Icon(
+                    Icons.arrow_drop_down,
+                    color: AppColors.blackColor,
+                  ), // Custom dropdown icon
                   elevation: 8, // Dropdown elevation
-                  isExpanded: true, // Ensures the dropdown button expands to fill the container horizontally
+                  isExpanded:
+                      true, // Ensures the dropdown button expands to fill the container horizontally
                   dropdownColor: Colors.white, // Dropdown background color
                 ),
               ),
-
-
-
-
               const Spacer(),
               const SizedBox(height: 20),
               ExpandedButton(
@@ -227,23 +240,26 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   print(selectedLanguage!.name.toString());
                   print(selectedLanguage!.code.toString());
 
-
                   await dataHandler.setStringValue(AppConstants.userName, name);
-                  await dataHandler.setStringValue(AppConstants.genderValue, gender.toString());
-                  await dataHandler.setStringValue(AppConstants.countryCode, selectedCountry!.code.toString());
-                  await dataHandler.setStringValue(AppConstants.countryName, selectedCountry!.name.toString());
+                  await dataHandler.setStringValue(
+                      AppConstants.genderValue, gender.toString());
+                  await dataHandler.setStringValue(AppConstants.countryCode,
+                      selectedCountry!.code.toString());
+                  await dataHandler.setStringValue(AppConstants.countryName,
+                      selectedCountry!.name.toString());
 
-                  await dataHandler.setStringValue(AppConstants.langCode, selectedLanguage!.code.toString());
-                  await dataHandler.setStringValue(AppConstants.langName, selectedLanguage!.name.toString());
-                  await dataHandler.setStringValue(AppConstants.doneOnboarding, "YES");
-
-
-
-
+                  await dataHandler.setStringValue(
+                      AppConstants.langCode, selectedLanguage!.code.toString());
+                  await dataHandler.setStringValue(
+                      AppConstants.langName, selectedLanguage!.name.toString());
+                  await dataHandler.setStringValue(
+                      AppConstants.doneOnboarding, "YES");
 
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                    MaterialPageRoute(
+                      builder: (context) => const HomeScreen(),
+                    ),
                   );
                 },
                 child: const AppText(

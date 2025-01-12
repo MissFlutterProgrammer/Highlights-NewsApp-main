@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:highlights/utils/appcolors.dart';
 import 'package:highlights/utils/appconstants.dart';
-
 import '../utils/helper/data_functions.dart';
 import '../widgets/apptext.dart';
 import 'homescreen.dart';
@@ -22,13 +20,12 @@ class _SplashScreenState extends State<SplashScreen> {
   String doneOnboarding = "";
   String setdoneOnboarding = "";
 
-
   void readData() async {
-    doneOnboarding = await dataHandler.getStringValue(AppConstants.doneOnboarding);
+    doneOnboarding =
+        await dataHandler.getStringValue(AppConstants.doneOnboarding);
 
     setState(() {
       setdoneOnboarding = doneOnboarding;
-
     });
   }
 
@@ -37,19 +34,20 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     readData();
 
-
-    Timer(const Duration(seconds: 3),
-            ()=>Navigator.pushReplacement(context,
-            MaterialPageRoute(builder:
-                // (context) => const HomeScreen()
-                (context) =>  setdoneOnboarding.toString() == "YES" ? const HomeScreen() : const OnboardingScreen()
-            ),
-        )
+    Timer(
+      const Duration(seconds: 3),
+      () => Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder:
+              // (context) => const HomeScreen()
+              (context) => setdoneOnboarding.toString() == "YES"
+                  ? const HomeScreen()
+                  : const OnboardingScreen(),
+        ),
+      ),
     );
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
               maxLines: 4,
               overflow: TextOverflow.ellipsis,
             ),
-            SizedBox(height: 100,),
+            SizedBox(height: 100),
             CupertinoActivityIndicator()
           ],
         ),

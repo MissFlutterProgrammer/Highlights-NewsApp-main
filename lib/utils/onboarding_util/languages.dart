@@ -1,4 +1,4 @@
- const List<Language> languages = [
+const List<Language> languages = [
   Language('English', 'EN'),
   Language('Mandarin Chinese', 'ZH_CN'),
   Language('Hindi', 'HI'),

@@ -1,7 +1,8 @@
+// ignore_for_file: deprecated_member_use, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:highlights/screens/splashscreen.dart';
 import 'package:highlights/utils/helper/data_functions.dart';
-
 import '../utils/appcolors.dart';
 import '../utils/appconstants.dart';
 import '../widgets/apptext.dart';
@@ -18,13 +19,11 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   DataHandler dataHandler = DataHandler();
 
-
   String lang = "";
   String setLang = "";
 
   String langCode = "";
   String setLangCode = "";
-
 
   String country = "";
   String setCountry = "";
@@ -32,16 +31,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String countryCode = "";
   String setCountryCode = "";
 
-
-
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     readData();
   }
-
-
 
   void readData() async {
     country = await dataHandler.getStringValue(AppConstants.countryName);
@@ -50,7 +44,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     lang = await dataHandler.getStringValue(AppConstants.langName);
     langCode = await dataHandler.getStringValue(AppConstants.langCode);
 
-
     setState(() {
       setCountry = country;
       setCountryCode = countryCode;
@@ -58,11 +51,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       setLang = lang;
       setLangCode = langCode;
     });
-
-
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -70,9 +59,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         leading: IconButton(
-          icon: const Icon(Icons.chevron_left), onPressed: () {
-          Navigator.pop(context);
-        },
+          icon: const Icon(Icons.chevron_left),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         title: const AppText(
           text: "P r o f i l e",
@@ -81,14 +71,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
           overflow: TextOverflow.ellipsis,
         ),
       ),
-
-      body:  Column(
+      body: Column(
         children: [
-          const SizedBox(height: 20,),
+          const SizedBox(height: 20),
           const ProfileCard(),
-          const SizedBox(height: 20,),
+          const SizedBox(height: 20),
           const Divider(),
-           ListTile(
+          ListTile(
             title: AppText(
               text: "Country",
               fontSize: 14.0,
@@ -96,15 +85,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               overflow: TextOverflow.ellipsis,
             ),
             subtitle: AppText(
-              text: "${setCountry} (${setCountryCode})",
+              text: "$setCountry ($setCountryCode)",
               fontSize: 20.0,
               color: AppColors.blackColor,
               overflow: TextOverflow.ellipsis,
               fontWeight: FontWeight.normal,
             ),
-
           ),
-           ListTile(
+          ListTile(
             title: AppText(
               text: "Language",
               fontSize: 14.0,
@@ -112,15 +100,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               overflow: TextOverflow.ellipsis,
             ),
             subtitle: AppText(
-              text: "${setLang} (${setLangCode})",
+              text: "$setLang ($setLangCode)",
               fontSize: 20.0,
               color: AppColors.blackColor,
               overflow: TextOverflow.ellipsis,
               fontWeight: FontWeight.normal,
             ),
-
           ),
-
           const Spacer(),
           const AppText(
             text: "1.0.0 Version",
@@ -129,13 +115,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             overflow: TextOverflow.ellipsis,
             fontWeight: FontWeight.normal,
           ),
-
-
-          const SizedBox(height: 20,),
+          const SizedBox(height: 20),
           const Divider(),
-          const SizedBox(height: 20,),
-
-
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ExpandedButton(
@@ -146,7 +128,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) =>  const SplashScreen()),
+                    builder: (context) => const SplashScreen(),
+                  ),
                 );
               },
               child: const AppText(
@@ -157,11 +140,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
           ),
-          const SizedBox(height: 30,),
+          const SizedBox(height: 30),
         ],
-      )
+      ),
     );
   }
 }
-
-

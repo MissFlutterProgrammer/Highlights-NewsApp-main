@@ -1,4 +1,3 @@
-
 String removeHttpsAndCom(String url) {
   String result = url.replaceAll('https://', ''); // Removing "https://"
   result = result.replaceAll('www.', ''); // Removing "www."

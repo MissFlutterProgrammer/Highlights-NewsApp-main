@@ -18,7 +18,6 @@ class Topic {
   const Topic(this.value);
 }
 
-
 List<Topic> topicList = [
   Topics.world,
   Topics.nation,

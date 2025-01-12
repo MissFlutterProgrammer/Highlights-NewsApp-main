@@ -1,10 +1,11 @@
+// ignore_for_file: library_private_types_in_public_api, deprecated_member_use
+
 import 'package:flutter/cupertino.dart';
 import 'package:highlights/widgets/news_widget.dart';
 import 'package:http/http.dart' as http;
 import 'package:webfeed_plus/webfeed_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:webfeed_plus/domain/rss_feed.dart';
-
 import '../../screens/viewmorescreen.dart';
 import '../../utils/appcolors.dart';
 import '../apptext.dart';
@@ -17,7 +18,8 @@ class HomeSectionGeo extends StatefulWidget {
 }
 
 class _HomeSectionGeoState extends State<HomeSectionGeo> {
-  final String rssUrl = "https://news.google.com/rss/headlines/section/geo/US?ceid=US:EN&hl=en&gl=US";
+  final String rssUrl =
+      "https://news.google.com/rss/headlines/section/geo/US?ceid=US:EN&hl=en&gl=US";
   RssFeed? feed;
 
   @override
@@ -39,9 +41,9 @@ class _HomeSectionGeoState extends State<HomeSectionGeo> {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       children: [
-         Row(
+        Row(
           children: [
             const Padding(
               padding: EdgeInsets.all(15.0),
@@ -52,48 +54,52 @@ class _HomeSectionGeoState extends State<HomeSectionGeo> {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-
             const Spacer(),
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Icon(Icons.list,color: AppColors.blackColor.withOpacity(0.2),),
+              child: Icon(
+                Icons.list,
+                color: AppColors.blackColor.withOpacity(0.2),
+              ),
             )
           ],
         ),
         SizedBox(
           child: feed == null
               ? const Center(
-            child: CupertinoActivityIndicator(),
-          )
+                  child: CupertinoActivityIndicator(),
+                )
               : ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                //  itemCount: feed!.items?.length,
-                itemCount: 2,
-                itemBuilder: (context, index) {
-                  var item = feed!.items?[index];
-                  return NewsWidget(
-                      title: item?.title ?? '',
-                      subtitle: "",
-                      publishDate: item?.pubDate?.toString() ?? "",
-                      author: item?.source?.url.toString() ?? "",
-                      link: item?.link?.toString() ?? "");
-                },
-              ),
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  //  itemCount: feed!.items?.length,
+                  itemCount: 2,
+                  itemBuilder: (context, index) {
+                    var item = feed!.items?[index];
+                    return NewsWidget(
+                        title: item?.title ?? '',
+                        subtitle: "",
+                        publishDate: item?.pubDate?.toString() ?? "",
+                        author: item?.source?.url.toString() ?? "",
+                        link: item?.link?.toString() ?? "");
+                  },
+                ),
         ),
-
         Row(
           children: [
             const Spacer(),
-
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: InkWell(
-                onTap: (){
+                onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>  ViewMore(getURL: rssUrl,name: "G e o l o g i c a l",)),
+                      builder: (context) => ViewMore(
+                        getURL: rssUrl,
+                        name: "G e o l o g i c a l",
+                      ),
+                    ),
                   );
                 },
                 child: const AppText(
@@ -104,7 +110,6 @@ class _HomeSectionGeoState extends State<HomeSectionGeo> {
                 ),
               ),
             )
-
           ],
         )
       ],

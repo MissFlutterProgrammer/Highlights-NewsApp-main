@@ -13,7 +13,7 @@ class AppText extends StatelessWidget {
 
   const AppText({
     super.key,
-    required this.text,// Required To Input
+    required this.text, // Required To Input
     this.fontSize = 14.0,
     this.color = Colors.black,
     this.fontWeight = FontWeight.normal,

@@ -1,10 +1,11 @@
+// ignore_for_file: library_private_types_in_public_api, deprecated_member_use
+
 import 'package:flutter/cupertino.dart';
 import 'package:highlights/widgets/news_widget.dart';
 import 'package:http/http.dart' as http;
 import 'package:webfeed_plus/webfeed_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:webfeed_plus/domain/rss_feed.dart';
-
 import '../../screens/viewmorescreen.dart';
 import '../../utils/appcolors.dart';
 import '../../utils/appconstants.dart';
@@ -60,7 +61,7 @@ class _HomeSectionCountryState extends State<HomeSectionCountry> {
 
   Future<void> loadFeed() async {
     var response = await http.get(Uri.parse(
-        "https://news.google.com/rss?ceid=${setCountryCode}:${setLangCode}&hl=${setLang.toLowerCase()}&gl=${setLangCode}"));
+        "https://news.google.com/rss?ceid=$setCountryCode:$setLangCode&hl=${setLang.toLowerCase()}&gl=$setLangCode"));
     if (response.statusCode == 200) {
       setState(() {
         feed = RssFeed.parse(response.body);
@@ -108,11 +109,12 @@ class _HomeSectionCountryState extends State<HomeSectionCountry> {
                   itemBuilder: (context, index) {
                     var item = feed!.items?[index];
                     return NewsWidget(
-                        title: item?.title ?? '',
-                        subtitle: "",
-                        publishDate: item?.pubDate?.toString() ?? "",
-                        author: item?.source?.url.toString() ?? "",
-                        link: item?.link?.toString() ?? "");
+                      title: item?.title ?? '',
+                      subtitle: "",
+                      publishDate: item?.pubDate?.toString() ?? "",
+                      author: item?.source?.url.toString() ?? "",
+                      link: item?.link?.toString() ?? "",
+                    );
                   },
                 ),
         ),
@@ -128,7 +130,7 @@ class _HomeSectionCountryState extends State<HomeSectionCountry> {
                     MaterialPageRoute(
                         builder: (context) => ViewMore(
                               getURL:
-                                  "https://news.google.com/rss?ceid=${countryCode}:${langCode}&hl=${langCode.toLowerCase()}&gl=${countryCode}",
+                                  "https://news.google.com/rss?ceid=$countryCode:$langCode&hl=${langCode.toLowerCase()}&gl=$countryCode",
                               name: "C o u n t r y",
                             )),
                   );
